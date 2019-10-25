@@ -1,0 +1,21 @@
+{
+  "name": "sacs",
+  "version": "1.0.0",
+  "description": "Seek Ads Checkout System",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest",
+    "build": "npx tsc"
+  },
+  "author": "Djoe Pramono",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "@typescript-eslint/eslint-plugin": "^1.2.0",
+    "@typescript-eslint/parser": "^1.2.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
+  }
+}
