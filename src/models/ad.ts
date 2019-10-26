@@ -1,7 +1,3 @@
-export interface Invalid {
-  message: string
-}
-
 export enum Ad {
   CLASSIC, STANDOUT, PREMIUM
 };

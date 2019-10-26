@@ -1,4 +1,4 @@
-import { Ad } from '../models';
+import { Ad } from './ad';
 import { runValidations, Validate } from '@codeallnight/falidator';
 import { Validated, Invalid } from '@codeallnight/falidator/dist/models';
 

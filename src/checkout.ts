@@ -1,5 +1,5 @@
 import { CartItem } from "./models/cartItem";
-import { Ad } from "./models";
+import { Ad } from "./models/ad";
 import { PricingRule, applyPricingRulesToACartItem } from "./models/pricingRule";
 
 export const Checkout = class Checkout {

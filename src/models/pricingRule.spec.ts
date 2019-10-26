@@ -1,8 +1,8 @@
 import { applyPricingRulesToACartItem, PricingRule } from './pricingRule';
-import { Ad } from '../models';
+import { Ad } from './ad';
 import { DiscountedAdvertisement, GetXForY } from './deal';
 import { CartItem } from './cartItem';
-import { calculateGetXForYCost } from '../services/calculate';
+import { calculateGetXForYCost } from '../services/dealCalculator';
 
 describe('applyPricingRulesToACartItem', () => {
 

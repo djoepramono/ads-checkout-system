@@ -1,6 +1,6 @@
 import { Checkout } from "./checkout";
 import { PricingRule } from "./models/pricingRule";
-import { Ad } from "./models";
+import { Ad } from "./models/ad";
 
 
 const bundleStandoutAds = { id: 1, ad: Ad.STANDOUT, deal: { getCount: 5, forCount: 4 }};

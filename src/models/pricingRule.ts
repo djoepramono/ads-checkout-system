@@ -1,7 +1,7 @@
-import { Ad } from "../models";
+import { Ad } from "./ad";
 import { Deal, isDiscountedAdvertisement } from "./deal";
 import { CartItem } from "./cartItem";
-import { calculateDiscountedAdvertisementCost, calculateGetXForYCost } from "../services/calculate";
+import { calculateDiscountedAdvertisementCost, calculateGetXForYCost } from "../services/dealCalculator";
 
 export interface PricingRule {
   id: number;
