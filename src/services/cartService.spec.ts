@@ -1,10 +1,11 @@
-import { applyPricingRulesToACartItem, PricingRule } from './pricingRule';
-import { Ad } from './ad';
-import { DiscountedAdvertisement, GetXForY } from './deal';
-import { CartItem } from './cartItem';
-import { calculateGetXForYCost } from '../services/dealCalculator';
+import { PricingRule } from '../models/pricingRule';
+import { Ad } from '../models/ad';
+import { DiscountedAdvertisement, GetXForY } from '../models/deal';
+import { CartItem } from '../models/cartItem';
+import { calculateGetXForYCost } from './dealService';
+import { calculateCartItem } from './cartService';
 
-describe('applyPricingRulesToACartItem', () => {
+describe('calculateCartItem', () => {
 
   const discountedDeal: DiscountedAdvertisement = {
     discountedPrice: 10
@@ -27,7 +28,7 @@ describe('applyPricingRulesToACartItem', () => {
     }
 
     it('takes the last one', () => {
-      const result = applyPricingRulesToACartItem(pricingRules, item);
+      const result = calculateCartItem(pricingRules, item);
       expect(result).toStrictEqual(calculateGetXForYCost(secondDeal.deal, item.count, item.retailPrice));
     });
   });
@@ -40,7 +41,7 @@ describe('applyPricingRulesToACartItem', () => {
     }
 
     it('calculate based on the default price', () => {
-      const result = applyPricingRulesToACartItem(pricingRules, item);
+      const result = calculateCartItem(pricingRules, item);
       expect(result).toStrictEqual(item.count * item.retailPrice);
     });
   });

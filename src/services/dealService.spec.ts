@@ -1,5 +1,5 @@
 import { GetXForY, DiscountedAdvertisement } from '../models/deal'
-import { calculateGetXForYCost, calculateDiscountedAdvertisementCost } from './dealCalculator'
+import { calculateGetXForYCost, calculateDiscountedAdvertisementCost } from './dealService'
 
 describe('calculateDiscountedAdvertisementCost', () => {
   it('calculate cost correctly', () => {

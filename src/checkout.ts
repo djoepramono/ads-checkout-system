@@ -1,6 +1,7 @@
 import { CartItem } from "./models/cartItem";
 import { Ad } from "./models/ad";
-import { PricingRule, applyPricingRulesToACartItem } from "./models/pricingRule";
+import { PricingRule } from "./models/pricingRule";
+import { calculateCartItem } from "./services/cartService";
 
 export const Checkout = class Checkout {
   private cart: CartItem[];
@@ -18,7 +19,7 @@ export const Checkout = class Checkout {
 
   public total = (): number => {
     return this.cart
-      .map(ci => applyPricingRulesToACartItem(this.pricingRules, ci))
+      .map(ci => calculateCartItem(this.pricingRules, ci))
       .reduce((accumulator, current) => { return accumulator + current}, 0);
   }
 };
