@@ -2,7 +2,7 @@ export enum Ad {
   Classic = 'CLASSIC',
   StandOut = 'STANDOUT',
   Premium = 'PREMIUM'
-}
+};
 
 export interface Advertisement {
   ad: Ad;
@@ -14,7 +14,7 @@ export interface CartItem {
   ad: Ad;
   count: number;
   retailPrice: number;
-}
+};
 
 
 // move to Deal?
@@ -35,4 +35,4 @@ export const isDiscountedAdvertisement = (deal: Deal): deal is DiscountedAdverti
 
 export const isGetXForY = (deal: Deal): deal is GetXForY => {
   return (deal as GetXForY).getCount !== undefined;
-}
+};
