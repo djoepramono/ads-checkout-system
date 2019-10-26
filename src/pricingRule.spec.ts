@@ -15,8 +15,8 @@ describe('applyPricingRulesToACartItem', () => {
   }
 
   const firstDeal = { id: 1, ad: Ad.CLASSIC, deal: discountedDeal };
-    const secondDeal = { id: 2, ad: Ad.CLASSIC, deal: bundleDeal };
-    const pricingRules: PricingRule[] = [ firstDeal, secondDeal ];
+  const secondDeal = { id: 2, ad: Ad.CLASSIC, deal: bundleDeal };
+  const pricingRules: PricingRule[] = [ firstDeal, secondDeal ];
 
   describe('when the ad matches several pricing rules', () => {
     const item: CartItem = {
