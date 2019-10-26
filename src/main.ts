@@ -1,5 +1,5 @@
 import { Checkout } from "./checkout";
-import { PricingRule } from "./pricingRule";
+import { PricingRule } from "./models/pricingRule";
 import { Ad } from "./models";
 
 

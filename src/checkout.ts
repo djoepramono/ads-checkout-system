@@ -1,6 +1,6 @@
-import { CartItem } from "./cartItem";
+import { CartItem } from "./models/cartItem";
 import { Ad } from "./models";
-import { PricingRule, applyPricingRulesToACartItem } from "./pricingRule";
+import { PricingRule, applyPricingRulesToACartItem } from "./models/pricingRule";
 
 export const Checkout = class Checkout {
   private cart: CartItem[];

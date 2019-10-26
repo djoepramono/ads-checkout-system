@@ -1,4 +1,4 @@
-import { Ad } from './models';
+import { Ad } from '../models';
 import { runValidations, Validate } from '@codeallnight/falidator';
 import { Validated, Invalid } from '@codeallnight/falidator/dist/models';
 
@@ -9,7 +9,6 @@ export interface CartItem {
 };
 
 const hasValidAd: Validate<any> = (input: any): Invalid | {} => {
-  console.log('-----',input.ad);
   return (input.ad in Ad) ? input : new Invalid('cannot find valid ad property e.g. CLASSIC / STANDOUT/ PREMIUM');
 };
 
