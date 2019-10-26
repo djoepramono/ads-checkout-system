@@ -7,30 +7,37 @@ interface Customer {
   name: string;
 }
 
+interface AppState {
+  cart: CartItem[];
+  availableAds: Advertisement[];
+  pricingRules: PricingRule[];
+}
+
 export const Checkout = class Checkout {
-  private cart: CartItem[] = [];
-  availableAds: Advertisement[] = [];
-  private pricingRules: PricingRule[] = [];
+  private state: AppState;
 
   public constructor(customer: Customer, pricingRules: PricingRule[]) {
-    this.cart = [];
-    this.pricingRules = pricingRules;
+    this.state = {
+      cart: [],
+      availableAds: [],
+      pricingRules: pricingRules
+    }
   };
 
   // constructor cannot be async, so this method is needed as a replacement
   // remember to await this in the usage before everything else
-  public async prepare(): Promise<void> {
-    this.availableAds = await getAllAds();
+  public async build(): Promise<void> {
+    this.state.availableAds = await getAllAds();
   };
 
   public add = (ad: Ad): void => {
-    const cartItem: CartItem = {ad, count: 1, retailPrice: getAdPriceFromState(ad, this.availableAds) }
-    this.cart.push(cartItem);
+    const cartItem: CartItem = {ad, count: 1, retailPrice: getAdPriceFromState(ad, this.state.availableAds) }
+    this.state.cart.push(cartItem);
   };
 
   public total = (): number => {
-    return this.cart
-      .map(ci => calculateCartItem(this.pricingRules, ci))
+    return this.state.cart
+      .map(ci => calculateCartItem(this.state.pricingRules, ci))
       .reduce((accumulator, current) => { return accumulator + current}, 0);
   }
 };

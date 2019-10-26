@@ -10,7 +10,7 @@ const myer = { name: "Myer" };
 
 const run = async () => {
   const checkout = new Checkout(myer, myerPricingRules);
-  await checkout.prepare();
+  await checkout.build();
   checkout.add(Ad.STANDOUT);
   checkout.add(Ad.STANDOUT);
   console.log(checkout.total());
