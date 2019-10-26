@@ -1,5 +1,5 @@
 import { PricingRule } from '../models/pricingRule';
-import { Ad } from '../models/ad';
+import { Ad } from './adService';
 import { DiscountedAdvertisement, GetXForY } from '../models/deal';
 import { CartItem } from '../models/cartItem';
 import { calculateGetXForYCost } from './dealService';

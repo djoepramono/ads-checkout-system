@@ -1,4 +1,4 @@
-import { Ad } from "./ad";
+import { Ad } from "../services/adService";
 import { Deal } from "./deal";
 
 export interface PricingRule {

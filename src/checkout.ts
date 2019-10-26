@@ -1,5 +1,5 @@
 import { CartItem } from "./models/cartItem";
-import { Ad, Advertisement, getAllAds } from "./models/ad";
+import { Ad, Advertisement, getAllAds, getAdPriceFromState } from "./services/adService";
 import { PricingRule } from "./models/pricingRule";
 import { calculateCartItem } from "./services/cartService";
 
@@ -24,7 +24,7 @@ export const Checkout = class Checkout {
   };
 
   public add = (ad: Ad): void => {
-    const cartItem: CartItem = {ad, count: 1, retailPrice:199 }
+    const cartItem: CartItem = {ad, count: 1, retailPrice: getAdPriceFromState(ad, this.availableAds) }
     this.cart.push(cartItem);
   };
 

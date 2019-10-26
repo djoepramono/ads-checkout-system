@@ -10,6 +10,7 @@ export interface Advertisement {
 };
 
 // Assuming that we get this from database or other API, thus the async
+// Assuming that these ads would be unique
 export const getAllAds = async (): Promise<Advertisement[]> => {
   return [
     {
@@ -32,3 +33,8 @@ export const getAllAds = async (): Promise<Advertisement[]> => {
     }
   ];
 }
+
+// Assuming the available advertisements are unique
+export const getAdPriceFromState = (ad: Ad, availableAdvertisements: Advertisement[]): number => {
+  return availableAdvertisements.filter(a => { return a.ad == ad })[0].retailPrice;
+};
