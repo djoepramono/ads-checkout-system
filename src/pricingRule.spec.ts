@@ -1,5 +1,6 @@
 import { applyPricingRulesToACartItem, PricingRule } from './pricingRule';
-import { Ad, DiscountedAdvertisement, GetXForY, CartItem } from './models';
+import { Ad, DiscountedAdvertisement, GetXForY } from './models';
+import { CartItem } from './cartItem';
 import { calculateGetXForYCost } from './calculate';
 
 describe('applyPricingRulesToACartItem', () => {
@@ -13,13 +14,13 @@ describe('applyPricingRulesToACartItem', () => {
     forCount: 3
   }
 
-  const firstDeal = { id: 1, ad: Ad.Classic, deal: discountedDeal };
-    const secondDeal = { id: 2, ad: Ad.Classic, deal: bundleDeal };
+  const firstDeal = { id: 1, ad: Ad.CLASSIC, deal: discountedDeal };
+    const secondDeal = { id: 2, ad: Ad.CLASSIC, deal: bundleDeal };
     const pricingRules: PricingRule[] = [ firstDeal, secondDeal ];
 
   describe('when the ad matches several pricing rules', () => {
     const item: CartItem = {
-      ad: Ad.Classic,
+      ad: Ad.CLASSIC,
       count: 5,
       retailPrice: 15
     }
@@ -32,7 +33,7 @@ describe('applyPricingRulesToACartItem', () => {
 
   describe('when the ad does not match the pricing rules', () => {
     const item: CartItem = {
-      ad: Ad.Premium,
+      ad: Ad.PREMIUM,
       count: 5,
       retailPrice: 25
     }

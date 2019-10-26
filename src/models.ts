@@ -1,7 +1,12 @@
+export interface Invalid {
+  message: string
+}
+
 export enum Ad {
-  Classic = 'CLASSIC',
-  StandOut = 'STANDOUT',
-  Premium = 'PREMIUM'
+  // Classic = 'CLASSIC',
+  // StandOut = 'STANDOUT',
+  // Premium = 'PREMIUM'
+  CLASSIC, STANDOUT, PREMIUM
 };
 
 export interface Advertisement {
@@ -9,13 +14,6 @@ export interface Advertisement {
   description: string;
   retailPrice: number;
 };
-
-export interface CartItem {
-  ad: Ad;
-  count: number;
-  retailPrice: number;
-};
-
 
 // move to Deal?
 export interface DiscountedAdvertisement {
