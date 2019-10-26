@@ -1,5 +1,5 @@
 import { CartItem } from "./models/cartItem";
-import { Ad, Advertisement, getAllAds, getAdPriceFromState } from "./services/adService";
+import { Ad, Advertisement, getAdPriceFromState } from "./services/adService";
 import { PricingRule } from "./models/pricingRule";
 import { calculateCartItem } from "./services/cartService";
 
@@ -8,26 +8,24 @@ interface Customer {
 }
 
 interface AppState {
+  customer: Customer;
   cart: CartItem[];
   availableAds: Advertisement[];
   pricingRules: PricingRule[];
 }
 
+// Unlike the pseudocode, the constructor for Checkout needs pricingRules, availableAds, and customer
+// constructor cannot be async thus the params needs to be resolved before hand
 export const Checkout = class Checkout {
   private state: AppState;
 
-  public constructor(customer: Customer, pricingRules: PricingRule[]) {
+  public constructor(customer: Customer, availableAds: Advertisement[], pricingRules: PricingRule[]) {
     this.state = {
+      customer,
       cart: [],
-      availableAds: [],
-      pricingRules: pricingRules
+      availableAds,
+      pricingRules
     }
-  };
-
-  // constructor cannot be async, so this method is needed as a replacement
-  // remember to await this in the usage before everything else
-  public async build(): Promise<void> {
-    this.state.availableAds = await getAllAds();
   };
 
   public add = (ad: Ad): void => {
@@ -39,5 +37,5 @@ export const Checkout = class Checkout {
     return this.state.cart
       .map(ci => calculateCartItem(this.state.pricingRules, ci))
       .reduce((accumulator, current) => { return accumulator + current}, 0);
-  }
+  };
 };

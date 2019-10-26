@@ -1,16 +1,17 @@
 import { Checkout } from "./checkout";
-import { PricingRule } from "./models/pricingRule";
 import { Ad } from "./services/adService";
-
-const bundleStandoutAds = { id: 1, ad: Ad.STANDOUT, deal: { getCount: 5, forCount: 4 }};
-const discountedPremiumAds = { id: 2, ad: Ad.PREMIUM, deal: { discountedPrice: 389.99 }};
-const myerPricingRules: PricingRule[] = [ bundleStandoutAds, discountedPremiumAds ];
-
-const myer = { name: "Myer" };
+import { getAllAds, getPricingRulesForCustomer } from "./helper";
 
 const run = async () => {
-  const checkout = new Checkout(myer, myerPricingRules);
-  await checkout.build();
+
+  const availableAds = await getAllAds();
+  const pricingRules = await getPricingRulesForCustomer();
+  const customer = { name: 'Myer'};
+
+  // Constructor cannot be async and this is why we are using a factory pattern
+  // where the params are already resolved before hand
+  const checkout = new Checkout(customer, availableAds, pricingRules);
+
   checkout.add(Ad.STANDOUT);
   checkout.add(Ad.STANDOUT);
   console.log(checkout.total());
