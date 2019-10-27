@@ -14,3 +14,7 @@ export const calculateGetXForYCost = (deal: GetXForY, noOfItemsInTheCart: number
   const cost = (noOfItemWithDealPrice * dealPrice) + (noOfItemWithRetailPrice * retailPrice);
   return cost;
 }
+
+export const numberToMoney = (input: number): string => {
+  return input.toFixed(2);
+}

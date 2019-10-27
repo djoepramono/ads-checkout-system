@@ -99,6 +99,6 @@ describe('getCartTotalCost', () => {
     ];
 
     const result = getCartTotalCost(cart, availableAds, pricingRules);
-    expect(result).toStrictEqual(12);
+    expect(result).toStrictEqual("12.00");
   });
 });

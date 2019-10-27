@@ -1,5 +1,5 @@
 import { GetXForY, DiscountedAdvertisement } from '../models/deal'
-import { calculateGetXForYCost, calculateDiscountedAdvertisementCost } from './dealService'
+import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney } from './dealService'
 
 describe('calculateDiscountedAdvertisementCost', () => {
   it('calculate cost correctly', () => {
@@ -68,5 +68,14 @@ describe('calculateGetXForYCost', () => {
       const cost = calculateGetXForYCost(pricingRule, numberOfItemsInTheCart, retailPrice);
       expect(cost).toStrictEqual(899.55);
     });
+  });
+});
+
+
+// I am not a math expert, but at least I'm aware of this issue
+describe('numberToMoney', () => {
+  it('handles 1.005', () => {
+    const result = numberToMoney(1.005);
+    expect(result).toStrictEqual("1.00");
   });
 });

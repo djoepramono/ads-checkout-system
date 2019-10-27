@@ -27,7 +27,7 @@ describe('checkout', () => {
     c.add(Ad.STANDOUT);
     const result = c.total();
 
-    expect(result).toStrictEqual(24);
+    expect(result).toStrictEqual("24.00");
   });
 
   describe('while put against test scenarios', () => {
@@ -67,7 +67,7 @@ describe('checkout', () => {
       c.add(Ad.PREMIUM);
       const result = c.total();
 
-      expect(result).toStrictEqual(987.97);
+      expect(result).toStrictEqual("987.97");
 
     });
 
@@ -88,7 +88,7 @@ describe('checkout', () => {
       c.add(Ad.PREMIUM);
       const result = c.total();
 
-      expect(result).toStrictEqual(1294.96);
+      expect(result).toStrictEqual("1294.96");
 
     });
 
@@ -109,7 +109,7 @@ describe('checkout', () => {
       c.add(Ad.PREMIUM);
       const result = c.total();
 
-      expect(result).toStrictEqual(934.97);
+      expect(result).toStrictEqual("934.97");
 
     });
   });

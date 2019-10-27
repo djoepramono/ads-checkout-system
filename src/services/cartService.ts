@@ -1,6 +1,6 @@
 import { isDiscountedAdvertisement } from "../models/deal";
 import { CartItem } from "../models/cartItem";
-import { calculateDiscountedAdvertisementCost, calculateGetXForYCost } from "./dealService";
+import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney } from "./dealService";
 import { PricingRule } from "../models/pricingRule";
 import { Ad, Advertisement, getAdPriceFromState } from "./adService";
 
@@ -53,12 +53,12 @@ export const getCartTotalCost = (
   cart: CartItem[],
   availableAds: Advertisement[],
   pricingRules: PricingRule[]
-): number => {
+): string => {
   const cost =  cart
     .map(ci => getAdPrice(ci, availableAds))
     .map(cip => calculateCartItem(pricingRules, cip))
     .reduce((accumulator, current) => { return accumulator + current}, 0);
 
-  const roundedCost = Math.round(cost * 100) / 100
+  const roundedCost = numberToMoney(cost);
   return roundedCost;
 };

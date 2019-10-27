@@ -34,7 +34,7 @@ export const Checkout = class Checkout {
     this.state.cart = addItemToCart(ad, this.state.cart);
   };
 
-  public total = (): number => {
+  public total = (): string => {
     return getCartTotalCost(this.state.cart,
       this.state.availableAds,
       this.state.pricingRules
