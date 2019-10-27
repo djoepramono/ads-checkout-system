@@ -1,6 +1,6 @@
-import { Checkout } from "./checkout";
-import { Ad } from "./services/adService";
-import { getAllAds, getPricingRulesForCustomer } from "./helper";
+import { Checkout } from './checkout';
+import { Ad } from './services/adService';
+import { getAllAds, getPricingRulesForCustomer } from './helper';
 
 const run = async () => {
 

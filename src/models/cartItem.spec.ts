@@ -1,5 +1,5 @@
-import { validateCartItem } from "./cartItem";
-import { Invalid } from "@codeallnight/falidator/dist/models";
+import { validateCartItem } from './cartItem';
+import { Invalid } from '@codeallnight/falidator/dist/models';
 
 describe('validateCartItem', () => {
   it('returns the cart item if validations pass', () => {
@@ -26,14 +26,14 @@ describe('validateCartItem', () => {
 
   it('returns invalid if there are missing properties', () => {
     const input = {
-      name: 'It is going to fail'
+      name: 'It is going to fail',
     };
 
     const result = validateCartItem(input);
     expect(result).toStrictEqual([
       new Invalid('cannot find valid ad property e.g. CLASSIC / STANDOUT/ PREMIUM'),
       new Invalid('cannot find numeric count property'),
-      new Invalid('cannot find numeric retailPrice property')
+      new Invalid('cannot find numeric retailPrice property'),
     ]);
   });
 });

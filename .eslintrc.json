@@ -1,9 +1,9 @@
-{  
+{
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true
-    }      
+    }
   },
   "plugins": [
     "@typescript-eslint"
@@ -13,12 +13,10 @@
   ],
   "settings": {
   },
-  "rules": {    
-    "indent": [
-        "error",
-        4,
-        { "SwitchCase": 1 }
-    ],
+  "rules": {
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/explicit-function-return-type": "off",
     "linebreak-style": [
         "error",
         "unix"

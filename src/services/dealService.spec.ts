@@ -1,24 +1,24 @@
-import { GetXForY, DiscountedAdvertisement } from '../models/deal'
-import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney } from './dealService'
+import { GetXForY, DiscountedAdvertisement } from '../models/deal';
+import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney } from './dealService';
 
 describe('calculateDiscountedAdvertisementCost', () => {
   it('calculate cost correctly', () => {
     const pricingRule: DiscountedAdvertisement = {
-      discountedPrice: 29.99
+      discountedPrice: 29.99,
     };
 
     const numberOfItemInTheCart = 4;
     const cost = calculateDiscountedAdvertisementCost(pricingRule, numberOfItemInTheCart);
     expect(cost).toStrictEqual(119.96);
   });
-})
+});
 
 describe('calculateGetXForYCost', () => {
   describe('when pricing rule applies to all items in the cart', () => {
-    it("calculate cost correctly with round price", () => {
+    it('calculate cost correctly with round price', () => {
       const pricingRule: GetXForY = {
         getCount: 5,
-        forCount: 4
+        forCount: 4,
       };
 
       const numberOfItemsInTheCart = 10;
@@ -28,10 +28,10 @@ describe('calculateGetXForYCost', () => {
       expect(cost).toStrictEqual(800);
     });
 
-    it("calculate cost correctly with not round price", () => {
+    it('calculate cost correctly with not round price', () => {
       const pricingRule: GetXForY = {
         getCount: 3,
-        forCount: 1
+        forCount: 1,
       };
 
       const numberOfItemsInTheCart = 9;
@@ -43,10 +43,10 @@ describe('calculateGetXForYCost', () => {
   });
 
   describe('when pricing rule applies not to all items in the cart', () => {
-    it("calculate cost correctly with pricing rules", () => {
+    it('calculate cost correctly with pricing rules', () => {
       const pricingRule: GetXForY = {
         getCount: 3,
-        forCount: 2
+        forCount: 2,
       };
 
       const numberOfItemsInTheCart = 10;
@@ -56,10 +56,10 @@ describe('calculateGetXForYCost', () => {
       expect(cost).toStrictEqual(700);
     });
 
-    it("calculate cost correctly with not round price", () => {
+    it('calculate cost correctly with not round price', () => {
       const pricingRule: GetXForY = {
         getCount: 7,
-        forCount: 4
+        forCount: 4,
       };
 
       const numberOfItemsInTheCart = 12;
@@ -76,6 +76,6 @@ describe('calculateGetXForYCost', () => {
 describe('numberToMoney', () => {
   it('handles 1.005', () => {
     const result = numberToMoney(1.005);
-    expect(result).toStrictEqual("1.00");
+    expect(result).toStrictEqual('1.00');
   });
 });

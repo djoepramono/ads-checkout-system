@@ -1,4 +1,4 @@
-import { DiscountedAdvertisement, GetXForY } from "../models/deal";
+import { DiscountedAdvertisement, GetXForY } from '../models/deal';
 
 export const calculateDiscountedAdvertisementCost = (deal: DiscountedAdvertisement, noOfItemsInTheCart: number): number => {
   const cost = noOfItemsInTheCart * deal.discountedPrice;
@@ -13,8 +13,8 @@ export const calculateGetXForYCost = (deal: GetXForY, noOfItemsInTheCart: number
   const dealPrice = deal.forCount * (retailPrice * 100) / deal.getCount / 100;
   const cost = (noOfItemWithDealPrice * dealPrice) + (noOfItemWithRetailPrice * retailPrice);
   return cost;
-}
+};
 
 export const numberToMoney = (input: number): string => {
   return input.toFixed(2);
-}
+};

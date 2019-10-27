@@ -15,7 +15,7 @@ export interface Advertisement {
 // - try catch makes the typing simpler depending on the team, it's can be more readable
 export const getAdPriceFromSource = (ad: Ad, availableAdvertisements: Advertisement[]): number => {
   try {
-    return availableAdvertisements.filter(a => { return a.ad == ad })[0].retailPrice;
+    return availableAdvertisements.filter(a => { return a.ad == ad; })[0].retailPrice;
   } catch (e) {
     throw new Error(`error: getAdPriceFromSource - ${e.message}`);
   }

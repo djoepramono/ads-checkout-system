@@ -1,7 +1,7 @@
-import { CartItem } from "./models/cartItem";
-import { Ad, Advertisement } from "./services/adService";
-import { PricingRule } from "./models/pricingRule";
-import { addItemToCart, getCartTotalCost } from "./services/cartService";
+import { CartItem } from './models/cartItem';
+import { Ad, Advertisement } from './services/adService';
+import { PricingRule } from './models/pricingRule';
+import { addItemToCart, getCartTotalCost } from './services/cartService';
 
 interface Customer {
   name: string;
@@ -24,8 +24,8 @@ export const Checkout = class Checkout {
       customer,
       cart: [],
       availableAds,
-      pricingRules
-    }
+      pricingRules,
+    };
   };
 
   public add = (ad: Ad): void => {

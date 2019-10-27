@@ -1,11 +1,11 @@
-import { getAdPriceFromSource, Ad, Advertisement } from "./adService";
+import { getAdPriceFromSource, Ad, Advertisement } from './adService';
 
 describe('getAdPriceFromSource', () => {
   it('gets the first available price', () => {
     const ad = Ad.PREMIUM;
     const availableAds: Advertisement[] = [
       { ad: Ad.PREMIUM, name: 'Premium Level', description: 'Best in class with all known feature', retailPrice: 1000 },
-      { ad: Ad.PREMIUM, name: 'Premium Level', description: 'Accidentally entered again', retailPrice: 999 }
+      { ad: Ad.PREMIUM, name: 'Premium Level', description: 'Accidentally entered again', retailPrice: 999 },
     ];
 
     const result = getAdPriceFromSource(ad, availableAds);
@@ -18,8 +18,8 @@ describe('getAdPriceFromSource', () => {
     const ad = Ad.CLASSIC;
     const availableAds: Advertisement[] = [
       { ad: Ad.PREMIUM, name: 'Premium Level', description: 'Best in class with all known feature', retailPrice: 1000 },
-      { ad: Ad.STANDOUT, name: 'Standout Level', description: 'Accidentally entered again', retailPrice: 999 }
+      { ad: Ad.STANDOUT, name: 'Standout Level', description: 'Accidentally entered again', retailPrice: 999 },
     ];
-    expect(() => getAdPriceFromSource(ad, availableAds)).toThrowError(`error: getAdPriceFromSource - Cannot read property 'retailPrice' of undefined`);
+    expect(() => getAdPriceFromSource(ad, availableAds)).toThrowError('error: getAdPriceFromSource - Cannot read property \'retailPrice\' of undefined');
   });
 });

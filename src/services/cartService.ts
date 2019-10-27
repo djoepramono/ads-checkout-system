@@ -1,8 +1,8 @@
-import { isDiscountedAdvertisement } from "../models/deal";
-import { CartItem } from "../models/cartItem";
-import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney } from "./dealService";
-import { PricingRule } from "../models/pricingRule";
-import { Ad, Advertisement, getAdPriceFromSource } from "./adService";
+import { isDiscountedAdvertisement } from '../models/deal';
+import { CartItem } from '../models/cartItem';
+import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney } from './dealService';
+import { PricingRule } from '../models/pricingRule';
+import { Ad, Advertisement, getAdPriceFromSource } from './adService';
 
 export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWithPrice): number => {
   const matchingPricingRules = pricingRules.filter(r => { return r.ad == item.ad; });
@@ -29,13 +29,13 @@ export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWit
 
 // Using object.assign, needs polyfill if this end up in IE 11 or below
 export const addItemToCart = (ad: Ad, cart: CartItem[]): CartItem[] => {
-  if (cart.filter(ci => { return ci.ad == ad }).length == 0) {
+  if (cart.filter(ci => { return ci.ad == ad; }).length == 0) {
     cart.push({ ad, count: 1 });
     return cart;
   } else {
-    const firstMatchedCartItemIndex = cart.findIndex(ci => { return ci.ad == ad });
+    const firstMatchedCartItemIndex = cart.findIndex(ci => { return ci.ad == ad; });
     const firstMatchedCartItem = cart[firstMatchedCartItemIndex];
-    const updatedCartItem = {...firstMatchedCartItem, count: firstMatchedCartItem.count + 1}
+    const updatedCartItem = {...firstMatchedCartItem, count: firstMatchedCartItem.count + 1};
     return Object.assign([...cart], {[firstMatchedCartItemIndex]: updatedCartItem});
   }
 };
@@ -46,7 +46,7 @@ export interface CartItemWithPrice extends CartItem {
 
 const getAdPrice = (cartItem: CartItem, priceTable: Advertisement[]): CartItemWithPrice => {
   const price = getAdPriceFromSource(cartItem.ad, priceTable);
-  return {...cartItem, basePrice: price}
+  return {...cartItem, basePrice: price};
 };
 
 export const getCartTotalCost = (
@@ -57,7 +57,7 @@ export const getCartTotalCost = (
   const cost =  cart
     .map(ci => getAdPrice(ci, availableAds))
     .map(cip => calculateCartItem(pricingRules, cip))
-    .reduce((accumulator, current) => { return accumulator + current}, 0);
+    .reduce((accumulator, current) => { return accumulator + current;}, 0);
 
   const roundedCost = numberToMoney(cost);
   return roundedCost;
