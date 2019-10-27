@@ -29,8 +29,6 @@ export const Checkout = class Checkout {
   };
 
   public add = (ad: Ad): void => {
-    // const cartItem: CartItem = {ad, count: 1, retailPrice: getAdPriceFromState(ad, this.state.availableAds) }
-    // this.state.cart.push(cartItem);
     this.state.cart = addItemToCart(ad, this.state.cart);
   };
 

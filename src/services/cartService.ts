@@ -2,7 +2,7 @@ import { isDiscountedAdvertisement } from "../models/deal";
 import { CartItem } from "../models/cartItem";
 import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney } from "./dealService";
 import { PricingRule } from "../models/pricingRule";
-import { Ad, Advertisement, getAdPriceFromState } from "./adService";
+import { Ad, Advertisement, getAdPriceFromSource } from "./adService";
 
 export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWithPrice): number => {
   const matchingPricingRules = pricingRules.filter(r => { return r.ad == item.ad; });
@@ -45,7 +45,7 @@ export interface CartItemWithPrice extends CartItem {
 };
 
 const getAdPrice = (cartItem: CartItem, priceTable: Advertisement[]): CartItemWithPrice => {
-  const price = getAdPriceFromState(cartItem.ad, priceTable);
+  const price = getAdPriceFromSource(cartItem.ad, priceTable);
   return {...cartItem, basePrice: price}
 };
 
