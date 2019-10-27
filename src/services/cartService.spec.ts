@@ -69,7 +69,7 @@ describe('addItemToCart', () => {
     expect(result).toStrictEqual(expectedResult);
   });
 
-  it('increments the count of exiting item in a cart', () => {
+  it('increments the count of existing item in a cart', () => {
     const existingCart: CartItem[] = [{ ad: Ad.PREMIUM, count: 8 }];
     const newAd: Ad = Ad.PREMIUM;
     const expectedResult: CartItem[] = [
