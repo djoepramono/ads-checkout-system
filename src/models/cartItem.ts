@@ -5,7 +5,6 @@ import { Validated, Invalid } from '@codeallnight/falidator/dist/models';
 export interface CartItem {
   ad: Ad;
   count: number;
-  retailPrice: number;
 };
 
 const hasValidAd: Validate<any> = (input: any): Invalid | {} => {

@@ -24,7 +24,6 @@ describe('calculateCartItem', () => {
     const item: CartItemWithPrice = {
       ad: Ad.CLASSIC,
       count: 5,
-      retailPrice: 15,
       basePrice: 18
     }
 
@@ -38,7 +37,6 @@ describe('calculateCartItem', () => {
     const item: CartItemWithPrice = {
       ad: Ad.PREMIUM,
       count: 5,
-      retailPrice: 25,
       basePrice: 28
     }
 
@@ -54,18 +52,18 @@ describe('addItemToCart', () => {
   it('adds item to an empty cart', () => {
     const existingCart: CartItem[] = [];
     const newAd: Ad = Ad.PREMIUM;
-    const expectedResult: CartItem[] = [{ad: Ad.PREMIUM, count: 1, retailPrice: 7}];
+    const expectedResult: CartItem[] = [{ ad: Ad.PREMIUM, count: 1 }];
 
     const result: CartItem[] = addItemToCart(newAd, existingCart);
     expect(result).toStrictEqual(expectedResult);
   });
 
   it('adds new item to a cart', () => {
-    const existingCart: CartItem[] = [{ad: Ad.PREMIUM, count: 1, retailPrice: 7}];
+    const existingCart: CartItem[] = [{ ad: Ad.PREMIUM, count: 1 }];
     const newAd: Ad = Ad.STANDOUT;
     const expectedResult: CartItem[] = [
-      {ad: Ad.PREMIUM, count: 1, retailPrice: 7},
-      {ad: Ad.STANDOUT, count: 1, retailPrice: 7}
+      { ad: Ad.PREMIUM, count: 1 },
+      { ad: Ad.STANDOUT, count: 1 }
     ];
 
     const result: CartItem[] = addItemToCart(newAd, existingCart);
@@ -73,10 +71,10 @@ describe('addItemToCart', () => {
   });
 
   it('increments the count of exiting item in a cart', () => {
-    const existingCart: CartItem[] = [{ad: Ad.PREMIUM, count: 8, retailPrice: 7}];
+    const existingCart: CartItem[] = [{ ad: Ad.PREMIUM, count: 8 }];
     const newAd: Ad = Ad.PREMIUM;
     const expectedResult: CartItem[] = [
-      {ad: Ad.PREMIUM, count: 9, retailPrice: 7}
+      { ad: Ad.PREMIUM, count: 9 }
     ];
 
     const result: CartItem[] = addItemToCart(newAd, existingCart);
@@ -87,8 +85,8 @@ describe('addItemToCart', () => {
 describe('getCartTotalCost', () => {
   it('calculates the total cost based on the pricing rule', () => {
     const cart: CartItem[] = [
-      {ad: Ad.CLASSIC, count: 1, retailPrice: 5},
-      {ad: Ad.STANDOUT, count: 1, retailPrice: 10}
+      { ad: Ad.CLASSIC, count: 1 },
+      { ad: Ad.STANDOUT, count: 1 }
     ];
 
     const availableAds: Advertisement[] = [

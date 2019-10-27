@@ -27,11 +27,10 @@ export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWit
   return cost;
 };
 
-// todo refactor that cart item has no priceAd
 // Using object.assign, needs polyfill if this end up in IE 11 or below
 export const addItemToCart = (ad: Ad, cart: CartItem[]): CartItem[] => {
   if (cart.filter(ci => { return ci.ad == ad }).length == 0) {
-    cart.push({ ad, count: 1, retailPrice: 7 });
+    cart.push({ ad, count: 1 });
     return cart;
   } else {
     const firstMatchedCartItemIndex = cart.findIndex(ci => { return ci.ad == ad });
