@@ -1,9 +1,8 @@
 import { PricingRule } from '../models/pricingRule';
 import { Ad, Advertisement } from './adService';
 import { DiscountedAdvertisement, GetXForY } from '../models/deal';
-import { CartItem } from '../models/cartItem';
 import { calculateGetXForYCost } from './dealService';
-import { calculateCartItem, addItemToCart, getCartTotalCost, CartItemWithPrice } from './cartService';
+import { calculateCartItem, addItemToCart, getCartTotalCost, CartItemWithPrice, CartItem } from './cartService';
 
 describe('calculateCartItem', () => {
 

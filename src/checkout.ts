@@ -1,7 +1,6 @@
-import { CartItem } from './models/cartItem';
 import { Ad, Advertisement } from './services/adService';
 import { PricingRule } from './models/pricingRule';
-import { addItemToCart, getCartTotalCost } from './services/cartService';
+import { addItemToCart, getCartTotalCost, CartItem } from './services/cartService';
 
 interface Customer {
   name: string;

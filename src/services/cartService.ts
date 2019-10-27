@@ -1,8 +1,12 @@
 import { isDiscountedAdvertisement } from '../models/deal';
-import { CartItem } from '../models/cartItem';
 import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney } from './dealService';
 import { PricingRule } from '../models/pricingRule';
 import { Ad, Advertisement, getAdPriceFromSource } from './adService';
+
+export interface CartItem {
+  ad: Ad;
+  count: number;
+};
 
 export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWithPrice): number => {
   const matchingPricingRules = pricingRules.filter(r => { return r.ad == item.ad; });
