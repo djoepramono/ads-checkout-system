@@ -1,7 +1,7 @@
 import { CartItem } from "./models/cartItem";
-import { Ad, Advertisement, getAdPriceFromState } from "./services/adService";
+import { Ad, Advertisement } from "./services/adService";
 import { PricingRule } from "./models/pricingRule";
-import { calculateCartItem } from "./services/cartService";
+import { calculateCartItem, addItemToCart } from "./services/cartService";
 
 interface Customer {
   name: string;
@@ -29,8 +29,9 @@ export const Checkout = class Checkout {
   };
 
   public add = (ad: Ad): void => {
-    const cartItem: CartItem = {ad, count: 1, retailPrice: getAdPriceFromState(ad, this.state.availableAds) }
-    this.state.cart.push(cartItem);
+    // const cartItem: CartItem = {ad, count: 1, retailPrice: getAdPriceFromState(ad, this.state.availableAds) }
+    // this.state.cart.push(cartItem);
+    this.state.cart = addItemToCart(ad, this.state.cart);
   };
 
   public total = (): number => {

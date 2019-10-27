@@ -3,7 +3,7 @@ import { Ad } from './adService';
 import { DiscountedAdvertisement, GetXForY } from '../models/deal';
 import { CartItem } from '../models/cartItem';
 import { calculateGetXForYCost } from './dealService';
-import { calculateCartItem } from './cartService';
+import { calculateCartItem, addItemToCart } from './cartService';
 
 describe('calculateCartItem', () => {
 
@@ -46,4 +46,38 @@ describe('calculateCartItem', () => {
     });
   });
 
+});
+
+describe('addItemToCart', () => {
+  it('adds item to an empty cart', () => {
+    const existingCart: CartItem[] = [];
+    const newAd: Ad = Ad.PREMIUM;
+    const expectedResult: CartItem[] = [{ad: Ad.PREMIUM, count: 1, retailPrice: 7}];
+
+    const result: CartItem[] = addItemToCart(newAd, existingCart);
+    expect(result).toStrictEqual(expectedResult);
+  });
+
+  it('adds new item to a cart', () => {
+    const existingCart: CartItem[] = [{ad: Ad.PREMIUM, count: 1, retailPrice: 7}];
+    const newAd: Ad = Ad.STANDOUT;
+    const expectedResult: CartItem[] = [
+      {ad: Ad.PREMIUM, count: 1, retailPrice: 7},
+      {ad: Ad.STANDOUT, count: 1, retailPrice: 7}
+    ];
+
+    const result: CartItem[] = addItemToCart(newAd, existingCart);
+    expect(result).toStrictEqual(expectedResult);
+  });
+
+  it('increments the count of exiting item in a cart', () => {
+    const existingCart: CartItem[] = [{ad: Ad.PREMIUM, count: 8, retailPrice: 7}];
+    const newAd: Ad = Ad.PREMIUM;
+    const expectedResult: CartItem[] = [
+      {ad: Ad.PREMIUM, count: 9, retailPrice: 7}
+    ];
+
+    const result: CartItem[] = addItemToCart(newAd, existingCart);
+    expect(result).toStrictEqual(expectedResult);
+  });
 });

@@ -1,6 +1,8 @@
 import { Advertisement, Ad } from "./services/adService";
 import { PricingRule } from "./models/pricingRule";
 
+// In real application, these functions will get a real data from a data source
+
 // Assuming that we get this from database or other API, thus the async
 // Assuming that these ads would be unique
 export const getAllAds = async (): Promise<Advertisement[]> => {
@@ -30,7 +32,6 @@ export const getAllAds = async (): Promise<Advertisement[]> => {
 // Assuming that the pricing rules here are the only one applicable for a customer
 export const getPricingRulesForCustomer = async (): Promise<PricingRule[]> => {
   return [
-    { id: 1, ad: Ad.STANDOUT, deal: { getCount: 5, forCount: 4 }},
-    { id: 2, ad: Ad.PREMIUM, deal: { discountedPrice: 389.99 }}
+    { id: 1, ad: Ad.CLASSIC, deal: { getCount: 3, forCount: 2 }}
   ];
 };

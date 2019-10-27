@@ -1,7 +1,8 @@
 import { DiscountedAdvertisement, GetXForY } from "../models/deal";
 
 export const calculateDiscountedAdvertisementCost = (deal: DiscountedAdvertisement, noOfItemsInTheCart: number): number => {
-  return noOfItemsInTheCart * deal.discountedPrice;
+  const cost = noOfItemsInTheCart * deal.discountedPrice;
+  return cost;
 };
 
 export const calculateGetXForYCost = (deal: GetXForY, noOfItemsInTheCart: number, retailPrice: number): number => {
@@ -10,5 +11,6 @@ export const calculateGetXForYCost = (deal: GetXForY, noOfItemsInTheCart: number
 
   // Do the division last, and also always perform calculation with no floation points
   const dealPrice = deal.forCount * (retailPrice * 100) / deal.getCount / 100;
-  return (noOfItemWithDealPrice * dealPrice) + (noOfItemWithRetailPrice * retailPrice);
+  const cost = (noOfItemWithDealPrice * dealPrice) + (noOfItemWithRetailPrice * retailPrice);
+  return cost;
 }
