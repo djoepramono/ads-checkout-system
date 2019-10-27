@@ -1,7 +1,7 @@
 import { CartItem } from "./models/cartItem";
 import { Ad, Advertisement } from "./services/adService";
 import { PricingRule } from "./models/pricingRule";
-import { calculateCartItem, addItemToCart } from "./services/cartService";
+import { addItemToCart, getCartTotalCost } from "./services/cartService";
 
 interface Customer {
   name: string;
@@ -35,8 +35,6 @@ export const Checkout = class Checkout {
   };
 
   public total = (): number => {
-    return this.state.cart
-      .map(ci => calculateCartItem(this.state.pricingRules, ci))
-      .reduce((accumulator, current) => { return accumulator + current}, 0);
+    return getCartTotalCost(this.state.cart,this.state.pricingRules);
   };
 };

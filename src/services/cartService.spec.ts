@@ -3,7 +3,7 @@ import { Ad } from './adService';
 import { DiscountedAdvertisement, GetXForY } from '../models/deal';
 import { CartItem } from '../models/cartItem';
 import { calculateGetXForYCost } from './dealService';
-import { calculateCartItem, addItemToCart } from './cartService';
+import { calculateCartItem, addItemToCart, getCartTotalCost } from './cartService';
 
 describe('calculateCartItem', () => {
 
@@ -79,5 +79,21 @@ describe('addItemToCart', () => {
 
     const result: CartItem[] = addItemToCart(newAd, existingCart);
     expect(result).toStrictEqual(expectedResult);
+  });
+});
+
+describe('getCartTotalCost', () => {
+  it('calculates the total cost based on the pricing rule', () => {
+    const cart: CartItem[] = [
+      {ad: Ad.CLASSIC, count: 1, retailPrice: 5},
+      {ad: Ad.STANDOUT, count: 1, retailPrice: 10}
+    ];
+
+    const pricingRules: PricingRule[] = [
+      { id: 1, ad: Ad.CLASSIC, deal: { discountedPrice : 4 }}
+    ];
+
+    const result = getCartTotalCost(cart, pricingRules);
+    expect(result).toStrictEqual(14);
   });
 });

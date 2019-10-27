@@ -35,9 +35,14 @@ export const addItemToCart = (ad: Ad, cart: CartItem[]): CartItem[] => {
     return cart;
   } else {
     const firstMatchedCartItemIndex = cart.findIndex(ci => { return ci.ad == ad });
-    console.log('-------', ad, cart, firstMatchedCartItemIndex);
     const firstMatchedCartItem = cart[firstMatchedCartItemIndex];
     const updatedCartItem = {...firstMatchedCartItem, count: firstMatchedCartItem.count + 1}
     return Object.assign([...cart], {[firstMatchedCartItemIndex]: updatedCartItem});
   }
+};
+
+export const getCartTotalCost = (cart: CartItem[], pricingRules: PricingRule[]): number => {
+  return cart
+    .map(ci => calculateCartItem(pricingRules, ci))
+    .reduce((accumulator, current) => { return accumulator + current}, 0);
 };
