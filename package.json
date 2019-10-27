@@ -2,7 +2,7 @@
   "name": "sacs",
   "version": "1.0.0",
   "description": "Seek Ads Checkout System",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "npx jest",
     "build": "npx tsc",
