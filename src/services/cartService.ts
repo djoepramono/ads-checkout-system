@@ -2,9 +2,9 @@ import { isDiscountedAdvertisement } from "../models/deal";
 import { CartItem } from "../models/cartItem";
 import { calculateDiscountedAdvertisementCost, calculateGetXForYCost } from "./dealService";
 import { PricingRule } from "../models/pricingRule";
-import { Ad } from "./adService";
+import { Ad, Advertisement, getAdPriceFromState } from "./adService";
 
-export const calculateCartItem = (pricingRules: PricingRule[], item: CartItem): number => {
+export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWithPrice): number => {
   const matchingPricingRules = pricingRules.filter(r => { return r.ad == item.ad; });
   const noOfMatchingPricingRules = matchingPricingRules.length;
 
@@ -16,12 +16,12 @@ export const calculateCartItem = (pricingRules: PricingRule[], item: CartItem): 
       // console.info('info: calculate with DiscountedAdvertisement');
     }
     else {
-      cost = calculateGetXForYCost(thePricingRule.deal, item.count, item.retailPrice);
+      cost = calculateGetXForYCost(thePricingRule.deal, item.count, item.basePrice);
       // console.info('info: calculate with GetXForYCost');
     }
   }
   else {
-    cost = item.count * item.retailPrice;
+    cost = item.count * item.basePrice;
     // console.info('info: calculate with retail price');
   }
   return cost;
@@ -41,8 +41,22 @@ export const addItemToCart = (ad: Ad, cart: CartItem[]): CartItem[] => {
   }
 };
 
-export const getCartTotalCost = (cart: CartItem[], pricingRules: PricingRule[]): number => {
+export interface CartItemWithPrice extends CartItem {
+  basePrice: number;
+};
+
+const getAdPrice = (cartItem: CartItem, priceTable: Advertisement[]): CartItemWithPrice => {
+  const price = getAdPriceFromState(cartItem.ad, priceTable);
+  return {...cartItem, basePrice: price}
+};
+
+export const getCartTotalCost = (
+  cart: CartItem[],
+  availableAds: Advertisement[],
+  pricingRules: PricingRule[]
+): number => {
   return cart
-    .map(ci => calculateCartItem(pricingRules, ci))
+    .map(ci => getAdPrice(ci, availableAds))
+    .map(cip => calculateCartItem(pricingRules, cip))
     .reduce((accumulator, current) => { return accumulator + current}, 0);
 };

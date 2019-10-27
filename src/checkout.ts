@@ -35,6 +35,9 @@ export const Checkout = class Checkout {
   };
 
   public total = (): number => {
-    return getCartTotalCost(this.state.cart,this.state.pricingRules);
+    return getCartTotalCost(this.state.cart,
+      this.state.availableAds,
+      this.state.pricingRules
+    );
   };
 };

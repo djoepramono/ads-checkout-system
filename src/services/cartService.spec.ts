@@ -1,9 +1,9 @@
 import { PricingRule } from '../models/pricingRule';
-import { Ad } from './adService';
+import { Ad, Advertisement } from './adService';
 import { DiscountedAdvertisement, GetXForY } from '../models/deal';
 import { CartItem } from '../models/cartItem';
 import { calculateGetXForYCost } from './dealService';
-import { calculateCartItem, addItemToCart, getCartTotalCost } from './cartService';
+import { calculateCartItem, addItemToCart, getCartTotalCost, CartItemWithPrice } from './cartService';
 
 describe('calculateCartItem', () => {
 
@@ -21,28 +21,30 @@ describe('calculateCartItem', () => {
   const pricingRules: PricingRule[] = [ firstDeal, secondDeal ];
 
   describe('when the ad matches several pricing rules', () => {
-    const item: CartItem = {
+    const item: CartItemWithPrice = {
       ad: Ad.CLASSIC,
       count: 5,
-      retailPrice: 15
+      retailPrice: 15,
+      basePrice: 18
     }
 
     it('takes the last one', () => {
       const result = calculateCartItem(pricingRules, item);
-      expect(result).toStrictEqual(calculateGetXForYCost(secondDeal.deal, item.count, item.retailPrice));
+      expect(result).toStrictEqual(calculateGetXForYCost(secondDeal.deal, item.count, item.basePrice));
     });
   });
 
   describe('when the ad does not match the pricing rules', () => {
-    const item: CartItem = {
+    const item: CartItemWithPrice = {
       ad: Ad.PREMIUM,
       count: 5,
-      retailPrice: 25
+      retailPrice: 25,
+      basePrice: 28
     }
 
     it('calculate based on the default price', () => {
       const result = calculateCartItem(pricingRules, item);
-      expect(result).toStrictEqual(item.count * item.retailPrice);
+      expect(result).toStrictEqual(item.count * item.basePrice);
     });
   });
 
@@ -89,11 +91,16 @@ describe('getCartTotalCost', () => {
       {ad: Ad.STANDOUT, count: 1, retailPrice: 10}
     ];
 
+    const availableAds: Advertisement[] = [
+      { ad: Ad.CLASSIC, name: 'Classic Ad', description: 'Test', retailPrice: 7 },
+      { ad: Ad.STANDOUT, name: 'Classic Ad', description: 'Test', retailPrice: 8 }
+    ];
+
     const pricingRules: PricingRule[] = [
       { id: 1, ad: Ad.CLASSIC, deal: { discountedPrice : 4 }}
     ];
 
-    const result = getCartTotalCost(cart, pricingRules);
-    expect(result).toStrictEqual(14);
+    const result = getCartTotalCost(cart, availableAds, pricingRules);
+    expect(result).toStrictEqual(12);
   });
 });
