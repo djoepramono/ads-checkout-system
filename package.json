@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx jest",
     "build": "npx tsc",
-    "lint": "npx eslint \"src/**\""
+    "lint": "npx eslint \"src/**\"",
+    "start": "node dist/main.js"
   },
   "author": "Djoe Pramono",
   "license": "ISC",
