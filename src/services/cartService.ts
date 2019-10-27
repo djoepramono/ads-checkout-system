@@ -54,8 +54,11 @@ export const getCartTotalCost = (
   availableAds: Advertisement[],
   pricingRules: PricingRule[]
 ): number => {
-  return cart
+  const cost =  cart
     .map(ci => getAdPrice(ci, availableAds))
     .map(cip => calculateCartItem(pricingRules, cip))
     .reduce((accumulator, current) => { return accumulator + current}, 0);
+
+  const roundedCost = Math.round(cost * 100) / 100
+  return roundedCost;
 };
