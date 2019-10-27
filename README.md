@@ -76,4 +76,4 @@ If you want to watch for file changes you can append the build and test `npm run
 
 This coding challenge does leave some details that are open for interpretations.
 More information can be found in [questions-and-assumptions](./docs/questions-and-assumptions.md)
-or alternative have a look at the [architectural-decisions](./docs/architectural-decisions.md)
+or alternatively have a look at the [architectural-decisions](./docs/architectural-decisions.md)
