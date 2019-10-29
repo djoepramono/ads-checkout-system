@@ -112,5 +112,26 @@ describe('checkout', () => {
       expect(result).toStrictEqual('934.97');
 
     });
+
+    it('resolves the total cost for JORA customer', () => {
+
+      const pricingRules: PricingRule[] = [
+        { id: 1, ad: Ad.PREMIUM, deal: { discountedPrice: 379.99, threshold: 4 }},
+      ];
+
+      const customer = {
+        name: 'Jora',
+      };
+      const c = new Checkout(customer, availableAds, pricingRules);
+
+      c.add(Ad.PREMIUM);
+      c.add(Ad.PREMIUM);
+      c.add(Ad.PREMIUM);
+      c.add(Ad.PREMIUM);
+      const result = c.total();
+
+      expect(result).toStrictEqual('1519.96');
+
+    });
   });
 });

@@ -6,7 +6,12 @@ export interface GetXForY {
   forCount: number;
 };
 
-export type Deal = DiscountedAdvertisement | GetXForY;
+export interface JoraSpecial {
+  discountedPrice: number;
+  threshold: number;
+}
+
+export type Deal = DiscountedAdvertisement | GetXForY | JoraSpecial;
 
 export const isDiscountedAdvertisement = (deal: Deal): deal is DiscountedAdvertisement => {
   return (deal as DiscountedAdvertisement).discountedPrice !== undefined;
@@ -14,4 +19,8 @@ export const isDiscountedAdvertisement = (deal: Deal): deal is DiscountedAdverti
 
 export const isGetXForY = (deal: Deal): deal is GetXForY => {
   return (deal as GetXForY).getCount !== undefined;
+};
+
+export const isJoraSpecial = (deal: Deal): deal is JoraSpecial => {
+  return (deal as JoraSpecial).discountedPrice !== undefined && (deal as JoraSpecial).threshold !== undefined;
 };

@@ -1,5 +1,5 @@
-import { isDiscountedAdvertisement } from '../models/deal';
-import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney } from './dealService';
+import { isDiscountedAdvertisement, isGetXForY } from '../models/deal';
+import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney, calculateJoraSpecial } from './dealService';
 import { PricingRule } from '../models/pricingRule';
 import { Ad, Advertisement, getAdPriceFromSource } from './adService';
 
@@ -20,7 +20,11 @@ export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWit
       // console.info('info: calculate with DiscountedAdvertisement');
     }
     else {
-      cost = calculateGetXForYCost(thePricingRule.deal, item.count, item.basePrice);
+      if (isGetXForY(thePricingRule.deal)){
+        cost = calculateGetXForYCost(thePricingRule.deal, item.count, item.basePrice);
+      } else {
+        cost = calculateJoraSpecial(thePricingRule.deal, item.count, item.basePrice);
+      }
       // console.info('info: calculate with GetXForYCost');
     }
   }

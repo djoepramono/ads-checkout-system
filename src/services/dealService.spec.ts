@@ -1,5 +1,5 @@
-import { GetXForY, DiscountedAdvertisement } from '../models/deal';
-import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney } from './dealService';
+import { GetXForY, DiscountedAdvertisement, JoraSpecial } from '../models/deal';
+import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney, calculateJoraSpecial } from './dealService';
 
 describe('calculateDiscountedAdvertisementCost', () => {
   it('calculate cost correctly', () => {
@@ -77,5 +77,32 @@ describe('numberToMoney', () => {
   it('handles 1.005', () => {
     const result = numberToMoney(1.005);
     expect(result).toStrictEqual('1.00');
+  });
+});
+
+describe('calculateJoraSpecial', () => {
+  const deal: JoraSpecial = {
+    discountedPrice: 4,
+    threshold: 2,
+  };
+
+  const retailPrice = 5;
+
+  it('should use the discounted price if equal to threshold', () => {
+    const noOfItemInTheCart = 2;
+    const result = calculateJoraSpecial(deal, noOfItemInTheCart, retailPrice);
+    expect(result).toStrictEqual(8);
+  });
+
+  it('should use the discounted price if more than threshold', () => {
+    const noOfItemInTheCart = 3;
+    const result = calculateJoraSpecial(deal, noOfItemInTheCart, retailPrice);
+    expect(result).toStrictEqual(12);
+  });
+
+  it('should use the retail price if less than threshold', () => {
+    const noOfItemInTheCart = 1;
+    const result = calculateJoraSpecial(deal, noOfItemInTheCart, retailPrice);
+    expect(result).toStrictEqual(5);
   });
 });
