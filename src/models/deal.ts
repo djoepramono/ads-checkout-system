@@ -1,12 +1,15 @@
 export interface DiscountedAdvertisement {
+  type: 'DiscountedAdvertisement';
   discountedPrice: number;
 };
 export interface GetXForY {
+  type: 'GetXForY';
   getCount: number;
   forCount: number;
 };
 
 export interface JoraSpecial {
+  type: 'JoraSpecial';
   discountedPrice: number;
   threshold: number;
 }

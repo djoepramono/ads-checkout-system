@@ -11,8 +11,8 @@ describe('checkout', () => {
     ];
 
     const pricingRules: PricingRule[] = [
-      { id: 1, ad: Ad.CLASSIC, deal: { discountedPrice : 4 }},
-      { id: 1, ad: Ad.STANDOUT, deal: { getCount: 2, forCount: 1 }},
+      { id: 1, ad: Ad.CLASSIC, deal: { type: 'DiscountedAdvertisement', discountedPrice : 4 }},
+      { id: 1, ad: Ad.STANDOUT, deal: { type: 'GetXForY', getCount: 2, forCount: 1 }},
     ];
 
     const customer = {
@@ -74,7 +74,7 @@ describe('checkout', () => {
     it('resolves the total cost for Axil', () => {
 
       const pricingRules: PricingRule[] = [
-        { id: 1, ad: Ad.STANDOUT, deal: { discountedPrice : 299.99 }},
+        { id: 1, ad: Ad.STANDOUT, deal: { type: 'DiscountedAdvertisement', discountedPrice : 299.99 }},
       ];
 
       const customer = {
@@ -95,7 +95,7 @@ describe('checkout', () => {
     it('resolves the total cost for SecondBite', () => {
 
       const pricingRules: PricingRule[] = [
-        { id: 1, ad: Ad.CLASSIC, deal: { getCount: 3, forCount: 2 }},
+        { id: 1, ad: Ad.CLASSIC, deal: { type: 'GetXForY', getCount: 3, forCount: 2 }},
       ];
 
       const customer = {
@@ -116,7 +116,7 @@ describe('checkout', () => {
     it('resolves the total cost for JORA customer', () => {
 
       const pricingRules: PricingRule[] = [
-        { id: 1, ad: Ad.PREMIUM, deal: { discountedPrice: 379.99, threshold: 4 }},
+        { id: 1, ad: Ad.PREMIUM, deal: { type: 'JoraSpecial', discountedPrice: 379.99, threshold: 4 }},
       ];
 
       const customer = {

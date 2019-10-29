@@ -7,10 +7,12 @@ import { calculateCartItem, addItemToCart, getCartTotalCost, CartItemWithPrice, 
 describe('calculateCartItem', () => {
 
   const discountedDeal: DiscountedAdvertisement = {
+    type: 'DiscountedAdvertisement',
     discountedPrice: 10,
   };
 
   const bundleDeal: GetXForY = {
+    type: 'GetXForY',
     getCount: 4,
     forCount: 3,
   };
@@ -94,7 +96,7 @@ describe('getCartTotalCost', () => {
     ];
 
     const pricingRules: PricingRule[] = [
-      { id: 1, ad: Ad.CLASSIC, deal: { discountedPrice : 4 }},
+      { id: 1, ad: Ad.CLASSIC, deal: { type: 'DiscountedAdvertisement', discountedPrice : 4 }},
     ];
 
     const result = getCartTotalCost(cart, availableAds, pricingRules);
