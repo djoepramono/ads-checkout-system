@@ -1,9 +1,10 @@
-import { GetXForY, DiscountedAdvertisement, JoraSpecial } from '../models/deal';
+import { GetXForY, DiscountedAdvertisement, ThresholdSpecial } from '../models/deal';
 import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney, calculateJoraSpecial } from './dealService';
 
 describe('calculateDiscountedAdvertisementCost', () => {
   it('calculate cost correctly', () => {
     const pricingRule: DiscountedAdvertisement = {
+      type: 'DiscountedAdvertisement',
       discountedPrice: 29.99,
     };
 
@@ -17,6 +18,7 @@ describe('calculateGetXForYCost', () => {
   describe('when pricing rule applies to all items in the cart', () => {
     it('calculate cost correctly with round price', () => {
       const pricingRule: GetXForY = {
+        type: 'GetXForY',
         getCount: 5,
         forCount: 4,
       };
@@ -30,6 +32,7 @@ describe('calculateGetXForYCost', () => {
 
     it('calculate cost correctly with not round price', () => {
       const pricingRule: GetXForY = {
+        type: 'GetXForY',
         getCount: 3,
         forCount: 1,
       };
@@ -45,6 +48,7 @@ describe('calculateGetXForYCost', () => {
   describe('when pricing rule applies not to all items in the cart', () => {
     it('calculate cost correctly with pricing rules', () => {
       const pricingRule: GetXForY = {
+        type:'GetXForY',
         getCount: 3,
         forCount: 2,
       };
@@ -58,6 +62,7 @@ describe('calculateGetXForYCost', () => {
 
     it('calculate cost correctly with not round price', () => {
       const pricingRule: GetXForY = {
+        type: 'GetXForY',
         getCount: 7,
         forCount: 4,
       };
@@ -81,7 +86,8 @@ describe('numberToMoney', () => {
 });
 
 describe('calculateJoraSpecial', () => {
-  const deal: JoraSpecial = {
+  const deal: ThresholdSpecial = {
+    type: 'JoraSpecial',
     discountedPrice: 4,
     threshold: 2,
   };

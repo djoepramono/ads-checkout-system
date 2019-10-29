@@ -1,4 +1,4 @@
-import { DiscountedAdvertisement, GetXForY, JoraSpecial } from '../models/deal';
+import { DiscountedAdvertisement, GetXForY, ThresholdSpecial } from '../models/deal';
 
 export const calculateDiscountedAdvertisementCost = (deal: DiscountedAdvertisement, noOfItemsInTheCart: number): number => {
   const cost = noOfItemsInTheCart * deal.discountedPrice;
@@ -15,7 +15,7 @@ export const calculateGetXForYCost = (deal: GetXForY, noOfItemsInTheCart: number
   return cost;
 };
 
-export const calculateJoraSpecial = (deal: JoraSpecial, noOfItemsInTheCart: number, retailPrice: number): number => {
+export const calculateJoraSpecial = (deal: ThresholdSpecial, noOfItemsInTheCart: number, retailPrice: number): number => {
   let cost;
   if (noOfItemsInTheCart >= deal.threshold) {
     cost = noOfItemsInTheCart * deal.discountedPrice;
