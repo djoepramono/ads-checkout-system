@@ -133,5 +133,27 @@ describe('checkout', () => {
       expect(result).toStrictEqual('1519.96');
 
     });
+
+    it('resolves the total cost for MYER customer', () => {
+
+      const pricingRules: PricingRule[] = [
+        { id: 1, ad: Ad.STANDOUT, deal: { type:'GetXForY', forCount: 4, getCount: 5 }},
+        { id: 2, ad: Ad.PREMIUM, deal: { type: 'DiscountedAdvertisement', discountedPrice: 389.99}},
+        { id: 3, ad: Ad.CLASSIC, deal: { type: 'JoraSpecial', discountedPrice: 249.99, threshold: 3 }},
+      ];
+
+      const customer = {
+        name: 'MYER',
+      };
+      const c = new Checkout(customer, availableAds, pricingRules);
+
+      c.add(Ad.CLASSIC);
+      c.add(Ad.CLASSIC);
+      c.add(Ad.CLASSIC);
+      const result = c.total();
+
+      expect(result).toStrictEqual('749.97');
+
+    });
   });
 });
