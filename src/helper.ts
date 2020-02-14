@@ -32,6 +32,6 @@ export const getAllAds = async (): Promise<Advertisement[]> => {
 // Assuming that the pricing rules here are the only one applicable for a customer
 export const getPricingRulesForCustomer = async (): Promise<PricingRule[]> => {
   return [
-    { id: 1, ad: Ad.CLASSIC, deal: { getCount: 3, forCount: 2 }},
+    { id: 1, ad: Ad.CLASSIC, deal: { type: 'GetXForY', getCount: 3, forCount: 2 }},
   ];
 };

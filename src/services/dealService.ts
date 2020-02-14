@@ -1,9 +1,4 @@
-import { DiscountedAdvertisement, GetXForY, ThresholdSpecial } from '../models/deal';
-
-export const calculateDiscountedAdvertisementCost = (deal: DiscountedAdvertisement, noOfItemsInTheCart: number): number => {
-  const cost = noOfItemsInTheCart * deal.discountedPrice;
-  return cost;
-};
+import { GetXForY, ThresholdSpecial } from '../models/deal';
 
 export const calculateGetXForYCost = (deal: GetXForY, noOfItemsInTheCart: number, retailPrice: number): number => {
   const noOfItemWithRetailPrice = noOfItemsInTheCart % deal.getCount;

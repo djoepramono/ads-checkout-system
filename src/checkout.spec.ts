@@ -11,7 +11,7 @@ describe('checkout', () => {
     ];
 
     const pricingRules: PricingRule[] = [
-      { id: 1, ad: Ad.CLASSIC, deal: { type: 'DiscountedAdvertisement', discountedPrice : 4 }},
+      { id: 1, ad: Ad.CLASSIC, deal: { type: 'JoraSpecial', discountedPrice : 4, threshold: 0 }},
       { id: 1, ad: Ad.STANDOUT, deal: { type: 'GetXForY', getCount: 2, forCount: 1 }},
     ];
 
@@ -74,7 +74,7 @@ describe('checkout', () => {
     it('resolves the total cost for Axil', () => {
 
       const pricingRules: PricingRule[] = [
-        { id: 1, ad: Ad.STANDOUT, deal: { type: 'DiscountedAdvertisement', discountedPrice : 299.99 }},
+        { id: 1, ad: Ad.STANDOUT, deal: { type: 'JoraSpecial', discountedPrice : 299.99, threshold: 0 }},
       ];
 
       const customer = {
@@ -138,7 +138,7 @@ describe('checkout', () => {
 
       const pricingRules: PricingRule[] = [
         { id: 1, ad: Ad.STANDOUT, deal: { type:'GetXForY', forCount: 4, getCount: 5 }},
-        { id: 2, ad: Ad.PREMIUM, deal: { type: 'DiscountedAdvertisement', discountedPrice: 389.99}},
+        { id: 2, ad: Ad.PREMIUM, deal: { type: 'JoraSpecial', discountedPrice: 389.99, threshold: 0 }},
         { id: 3, ad: Ad.CLASSIC, deal: { type: 'JoraSpecial', discountedPrice: 249.99, threshold: 3 }},
       ];
 

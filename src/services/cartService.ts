@@ -1,4 +1,4 @@
-import { calculateDiscountedAdvertisementCost, calculateGetXForYCost, numberToMoney, calculateJoraSpecial } from './dealService';
+import { calculateGetXForYCost, numberToMoney, calculateJoraSpecial } from './dealService';
 import { PricingRule } from '../models/pricingRule';
 import { Ad, Advertisement, getAdPriceFromSource } from './adService';
 
@@ -16,9 +16,6 @@ export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWit
     const thePricingRule = matchingPricingRules[noOfMatchingPricingRules - 1];
 
     switch(thePricingRule.deal.type) {
-      case 'DiscountedAdvertisement':
-        cost = calculateDiscountedAdvertisementCost(thePricingRule.deal, item.count);
-        break;
       case 'GetXForY':
         cost = calculateGetXForYCost(thePricingRule.deal, item.count, item.basePrice);
         break;
@@ -28,19 +25,6 @@ export const calculateCartItem = (pricingRules: PricingRule[], item: CartItemWit
       default:
         cost = item.count * item.basePrice;
     }
-
-    // if (isDiscountedAdvertisement(thePricingRule.deal)) {
-    //   cost = calculateDiscountedAdvertisementCost(thePricingRule.deal, item.count);
-    //   // console.info('info: calculate with DiscountedAdvertisement');
-    // }
-    // else {
-    //   if (isGetXForY(thePricingRule.deal)){
-    //     cost = calculateGetXForYCost(thePricingRule.deal, item.count, item.basePrice);
-    //   } else {
-    //     cost = calculateJoraSpecial(thePricingRule.deal, item.count, item.basePrice);
-    //   }
-    //   // console.info('info: calculate with GetXForYCost');
-    // }
   }
   else {
     cost = item.count * item.basePrice;

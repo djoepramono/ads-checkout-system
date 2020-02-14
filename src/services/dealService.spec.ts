@@ -1,18 +1,5 @@
-import { GetXForY, DiscountedAdvertisement, ThresholdSpecial } from '../models/deal';
-import { calculateGetXForYCost, calculateDiscountedAdvertisementCost, numberToMoney, calculateJoraSpecial } from './dealService';
-
-describe('calculateDiscountedAdvertisementCost', () => {
-  it('calculate cost correctly', () => {
-    const pricingRule: DiscountedAdvertisement = {
-      type: 'DiscountedAdvertisement',
-      discountedPrice: 29.99,
-    };
-
-    const numberOfItemInTheCart = 4;
-    const cost = calculateDiscountedAdvertisementCost(pricingRule, numberOfItemInTheCart);
-    expect(cost).toStrictEqual(119.96);
-  });
-});
+import { GetXForY, ThresholdSpecial } from '../models/deal';
+import { calculateGetXForYCost, numberToMoney, calculateJoraSpecial } from './dealService';
 
 describe('calculateGetXForYCost', () => {
   describe('when pricing rule applies to all items in the cart', () => {
@@ -110,5 +97,18 @@ describe('calculateJoraSpecial', () => {
     const noOfItemInTheCart = 1;
     const result = calculateJoraSpecial(deal, noOfItemInTheCart, retailPrice);
     expect(result).toStrictEqual(5);
+  });
+
+  it('should use the discounted price if threshold is zero', () => {
+
+    const dealThresholdZero: ThresholdSpecial = {
+      type: 'JoraSpecial',
+      discountedPrice: 4,
+      threshold: 0,
+    };
+
+    const noOfItemInTheCart = 3;
+    const result = calculateJoraSpecial(dealThresholdZero, noOfItemInTheCart, retailPrice);
+    expect(result).toStrictEqual(12);
   });
 });

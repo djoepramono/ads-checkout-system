@@ -1,14 +1,15 @@
 import { PricingRule } from '../models/pricingRule';
 import { Ad, Advertisement } from './adService';
-import { DiscountedAdvertisement, GetXForY } from '../models/deal';
+import { GetXForY, ThresholdSpecial } from '../models/deal';
 import { calculateGetXForYCost } from './dealService';
 import { calculateCartItem, addItemToCart, getCartTotalCost, CartItemWithPrice, CartItem } from './cartService';
 
 describe('calculateCartItem', () => {
 
-  const discountedDeal: DiscountedAdvertisement = {
-    type: 'DiscountedAdvertisement',
+  const discountedDeal: ThresholdSpecial = {
+    type: 'JoraSpecial',
     discountedPrice: 10,
+    threshold: 0,
   };
 
   const bundleDeal: GetXForY = {
@@ -96,7 +97,7 @@ describe('getCartTotalCost', () => {
     ];
 
     const pricingRules: PricingRule[] = [
-      { id: 1, ad: Ad.CLASSIC, deal: { type: 'DiscountedAdvertisement', discountedPrice : 4 }},
+      { id: 1, ad: Ad.CLASSIC, deal: { type: 'JoraSpecial', discountedPrice : 4, threshold: 0 }},
     ];
 
     const result = getCartTotalCost(cart, availableAds, pricingRules);
